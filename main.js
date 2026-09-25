@@ -47,6 +47,41 @@
     yearEls[i].textContent = String(new Date().getFullYear());
   }
 
+  /* ---------- Header shadow on scroll ---------- */
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* ---------- Fade content in as it scrolls into view ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    document.documentElement.classList.add('js');
+    var targets = document.querySelectorAll(
+      '.section-head, .card, .step, .point, .value, .stat, .svc-row, .shot, ' +
+      '.split__media, .split__copy, .hero-photo, .detail-strip, .form-card, .channel, .cta-band .wrap'
+    );
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add('is-in');
+        observer.unobserve(el);
+        // Drop the helper classes afterwards so hover effects work normally
+        setTimeout(function () { el.classList.remove('reveal', 'is-in'); el.style.transitionDelay = ''; }, 1200);
+      });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.08 });
+
+    Array.prototype.forEach.call(targets, function (el) {
+      var siblings = el.parentNode ? Array.prototype.indexOf.call(el.parentNode.children, el) : 0;
+      el.style.transitionDelay = Math.min(siblings, 4) * 70 + 'ms';
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  }
+
   /* ---------- 3. Enquiry form ---------- */
   var form = document.getElementById('enquiry-form');
   if (!form) return;
