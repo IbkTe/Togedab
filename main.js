@@ -12,24 +12,30 @@
   var nav = document.getElementById('primary-nav');
 
   if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
+    var icon = toggle.querySelector('path');
+    var MENU = 'M3 6h18M3 12h18M3 18h18';
+    var CLOSE = 'M6 6l12 12M18 6L6 18';
+
+    function setOpen(open) {
+      nav.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      if (icon) icon.setAttribute('d', open ? CLOSE : MENU);
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!nav.classList.contains('is-open'));
     });
 
     // Close the menu after following a link on small screens
     nav.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A' && nav.classList.contains('is-open')) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+      if (e.target.tagName === 'A' && nav.classList.contains('is-open')) setOpen(false);
     });
 
     // Escape closes it
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
+        setOpen(false);
         toggle.focus();
       }
     });
