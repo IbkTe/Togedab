@@ -16,7 +16,10 @@ Place these in the `images/` folder:
 - `logo.png` (dark logo for the header)
 - `logo-light.png` (light logo for the footer)
 - `favicon.png`
-- `station-front.jpg`, `forecourt.jpg`, `tank-calibration.jpg`, `tank-chamber.jpg`, `team.jpg`, `onsite-testing.jpg`, `cement.jpg`
+- Hero band: `field-testing.jpg`, `tank-calibration.jpg`, `station-front.jpg`, `construction.jpg`
+- Gallery and sections: `tank-chamber.jpg`, `tank-calibration-site.jpg`, `underground-tanks.jpg`, `excavation.jpg`, `forecourt.jpg`, `completed-building.jpg`
+
+Use lowercase filenames with no spaces, max 1600px wide and under 300 KB.
 
 ## Enquiry form
 
