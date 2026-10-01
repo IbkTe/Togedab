@@ -75,7 +75,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .section-head { margin-bottom: var(--block); }
 .eyebrow { font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: var(--head-gap); }
 .cta-band .eyebrow { color: rgba(255, 255, 255, .8); }
-.section-head .eyebrow { margin-top: 0; font-size: 13px; color: var(--primary); }
+.section-head .eyebrow, .page-head .eyebrow { margin-top: 0; font-size: 13px; color: var(--primary); }
 .section-head h2 { font-size: clamp(26px, 3.2vw, 32px); font-weight: 800; }
 .section-head p { margin-top: var(--head-gap); color: rgba(19,37,63,.78); font-size: 17px; }
 
@@ -491,7 +491,7 @@ a.channel:hover { border-color: var(--primary); text-decoration: none; }
   .page-head + .section { padding-top: 36px; }
 
   .section-head h2 { font-size: 22px; }
-  .eyebrow, .section-head .eyebrow { font-size: 12.5px; }
+  .eyebrow, .section-head .eyebrow, .page-head .eyebrow { font-size: 12.5px; }
 
   /* Info cards: no border, flat paper surface */
   .grid--4, .grid--3, .grid--2, .points, .values { grid-template-columns: 1fr; }
@@ -519,6 +519,8 @@ a.channel:hover { border-color: var(--primary); text-decoration: none; }
   .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
   .shot img { height: 130px; box-shadow: none; }
   .shot figcaption { font-size: 12.5px; margin-top: 8px; }
+  .gallery .shot:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .gallery .shot:last-child:nth-child(odd) img { height: 200px; }
 
   .svc-row { grid-template-columns: 36px 1fr; gap: 14px; padding: 20px 0; }
   .svc-row .n { font-size: 18px; }
